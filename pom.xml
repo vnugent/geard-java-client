@@ -27,19 +27,36 @@
 	</dependency>
 	<dependency>
 		<groupId>org.jboss.resteasy</groupId>
-		<artifactId>resteasy-jackson-provider</artifactId>
+		<artifactId>resteasy-jackson2-provider</artifactId>
 		<version>3.0.8.Final</version>
-	</dependency>	
+	</dependency>		
 	<dependency>
 	  <groupId>com.google.guava</groupId>
 	  <artifactId>guava</artifactId>
 	  <version>17.0</version>
+	</dependency>	
+	<dependency>
+		<groupId>org.apache.commons</groupId>
+		<artifactId>commons-lang3</artifactId>
+		<version>3.3.2</version>
+	</dependency>	
+	<dependency>
+	  <groupId>org.apache.httpcomponents</groupId>
+	  <artifactId>httpclient</artifactId>
+	  <version>4.3.4</version>
 	</dependency>	
    	<dependency>
   	  <groupId>org.testng</groupId>
   	  <artifactId>testng</artifactId>
   	  <version>6.1.1</version>
   	  <scope>test</scope>
+  	</dependency>
+  	<dependency>
+		 <groupId>com.github.axet</groupId>
+		  <artifactId>wget</artifactId>
+		  <version>1.2.11</version> 	
+		   <scope>test</scope>
+		  
   	</dependency>
   </dependencies>
 

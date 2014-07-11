@@ -2,7 +2,8 @@ package org.vnguyen.geard;
 
 import java.util.List;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 /**
  * Sample Gear definition json
