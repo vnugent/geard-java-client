@@ -11,7 +11,9 @@ public class PortsDefinition {
 	@JsonProperty
 	public int external;
 	
-	PortsDefinition(int internal, int external) {
+	public PortsDefinition(){}
+	
+	public PortsDefinition(int internal, int external) {
 		this.internal = internal;
 		this.external = external;
 	}

@@ -16,15 +16,17 @@ public interface GearAPI {
 	@Produces("text/plain")	
 	public String install(@PathParam("name") String name, GearDefinition def);
 	
-	
-	
-	
-	
 	@PUT 
 	@Path("/container/{name}/started")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public String start(@PathParam("name") String name);	
+
+	@PUT 
+	@Path("/container/{name}/stopped")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public String stop(@PathParam("name") String name);		
 	
 	@GET 
 	@Path("/container/{name}/status")

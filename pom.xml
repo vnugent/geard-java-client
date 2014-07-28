@@ -51,13 +51,11 @@
   	  <version>6.1.1</version>
   	  <scope>test</scope>
   	</dependency>
-  	<dependency>
-		 <groupId>com.github.axet</groupId>
-		  <artifactId>wget</artifactId>
-		  <version>1.2.11</version> 	
-		   <scope>test</scope>
-		  
-  	</dependency>
+ 	<dependency>
+      <groupId>com.github.docker-java</groupId>
+      <artifactId>docker-java</artifactId>
+      <version>0.9.1-SNAPSHOT</version>
+	</dependency>	 	
   </dependencies>
 
         <repositories>

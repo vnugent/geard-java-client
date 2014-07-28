@@ -2,15 +2,16 @@ package org.vnguyen.geard;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
  * Sample Gear definition json
  * 
- * {"Image": "vnguyen/rhq-psql", 
+ * {"Image": "openshift/busybox-http-app", 
  * 	"Started":true, 
- * 	"Ports":[{"Internal":5432, "External":30000}],
+ * 	"Ports":[{"Internal":8080, "External":30000}],
  * 	"NetworkLinks": [
  *   {
  *     "FromHost": "127.0.0.1",
@@ -22,53 +23,37 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *  }
  *
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class GearDefinition {
 
-	@JsonProperty("image")
+	@JsonProperty("Image")
 	public String image;
 	
-	@JsonProperty("started")
+	@JsonProperty("Started")
 	public boolean started;
 	
-	@JsonProperty("ports")
+	@JsonProperty("Ports")
 	public List<PortsDefinition> ports;
 
-	@JsonProperty("networklinks")
+	@JsonProperty("NetworkLinks")
 	public List<NetworkLinksDefinition> links;
 	
+	public GearDefinition() {}
 	
-	public static NetworkLinksDefinition links() {
+	public static NetworkLinksDefinition makeLinks() {
 		return new NetworkLinksDefinition();
 	}
-	/**
-	 * Link between containers
-	 *
-	 */
-	public static class NetworkLinksDefinition {
-		
-		@JsonProperty("FromHost")
-		public String fromHost;
-		
-		@JsonProperty("FromPort")
-		public int fromPort;
-		
-		@JsonProperty("ToHost")
-		public String toHost;
-
-		@JsonProperty("ToPort")
-		public int toPort;
-				
-		public NetworkLinksDefinition from(String host, int port) {
-			fromHost = host;
-			fromPort = port;
-			return this;
+	
+	public NetworkLinksDefinition findLinkFor(int port) {
+		for(NetworkLinksDefinition def : links) {
+			if (def.fromPort == port) {
+				return def;
+			}
 		}
-		
-		public NetworkLinksDefinition to(String host, int port) {
-			toHost = host;
-			toPort = port;
-			return this;
-		}
-		
+		throw new RuntimeException("Can't find network link for port " + port);
+	}
+	
+	public String toString() {
+		return this.image;
 	}
 }
