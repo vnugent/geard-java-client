@@ -1,11 +1,10 @@
 language: java
 jdk:
   - openjdk7
-  - oraclejdk7
+ # - oraclejdk7
 
 before_install:
-  - sudo apt-get install linux-image-generic-lts-raring linux-headers-generic-lts-raring
-  - sudo apt-get -qq install -y docker.io
+  - sudo apt-get install -y linux-image-generic-lts-raring linux-headers-generic-lts-raring
   - sudo reboot
 
 install:
