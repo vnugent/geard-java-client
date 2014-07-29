@@ -4,9 +4,14 @@ jdk:
   - oraclejdk7
 
 before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get -qq install docker.io
+  - sudo apt-get install linux-image-generic-lts-raring linux-headers-generic-lts-raring
+  - sudo apt-get -qq install -y docker.io
+  - sudo reboot
+
+install:
+  - sudo apt-get -qq install -y docker.io
+  - sudo reboot
   - sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
   - sudo sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
   - sudo docker pull openshift/geard
-  - sudo docker run -d openshift/geard
+  - sudo docker run -d openshift/geard  
