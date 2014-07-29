@@ -3,14 +3,12 @@ package org.vnguyen.geard;
 import java.util.Map;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.github.dockerjava.client.DockerClient;
 import com.google.common.collect.ImmutableList;
-
-import org.testng.Assert;
-import org.testng.Reporter;
 
 
 @Test
@@ -38,7 +36,7 @@ public class NewGearAPITest {
 		String gearName = "geard-java-" + RandomStringUtils.randomAlphanumeric(5) ;
 		api.install(gearName, gear);
 		
-		Map<Integer, ServiceEndpoint> endpoints = docker.getServiceEndpointsFromContainer(gearName, 10000);
+		Map<Integer, ServiceEndpoint> endpoints = docker.getServiceEndpointsFromContainer(gearName, 30000);
 		Assert.assertNotNull(endpoints);
 		ServiceEndpoint busyboxEndpoint = endpoints.get(8080);
 		Assert.assertNotNull(busyboxEndpoint);

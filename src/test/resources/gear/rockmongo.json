@@ -1,0 +1,11 @@
+{
+    "Image":"openshift/centos-rockmongo",
+    "Ports":[{"Internal":80, "External":6060}],
+    "NetworkLinks":[
+        {"FromHost":"127.0.0.1",
+        "FromPort":27017,
+        "ToHost": "",
+        "ToPort": 0}
+      ]
+    }
+}

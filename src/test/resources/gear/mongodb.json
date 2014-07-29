@@ -1,0 +1,5 @@
+{
+      "Name":"mongodb",
+      "Image":"openshift/centos-mongodb",
+      "Ports":[{"Internal":27017, "External":0}]
+}

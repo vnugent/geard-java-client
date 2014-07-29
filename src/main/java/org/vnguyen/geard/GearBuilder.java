@@ -42,7 +42,7 @@ public class GearBuilder {
 		geardClient.install(this.gearName, this.gearDefinition);
 		geardClient.start(this.gearName);
 
-		Map<Integer, ServiceEndpoint> endpoints = dockerSvc.getServiceEndpointsFromContainer(this.gearName, 10000);
+		Map<Integer, ServiceEndpoint> endpoints = dockerSvc.getServiceEndpointsFromContainer(this.gearName, 30000);
 		Gear gear = new Gear(gearName, gearDefinition, endpoints);
 		return gear;
 	}
