@@ -4,8 +4,9 @@ machine:
 
 dependencies:
    pre:
-      - docker pull openshift/geard
-      - docker run -d openshift/geard
+      - docker pull openshift/geard:
+		timeout: 300
+	  - docker run -d openshift/geard
 
 test:
    override:
