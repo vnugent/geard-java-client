@@ -4,6 +4,7 @@ machine:
 
 dependencies:
    pre:
+      - docker info
       - docker pull openshift/geard:
           timeout: 300
       - docker run -d openshift/geard
