@@ -1,0 +1,12 @@
+machine:
+   services:
+      - docker
+
+dependencies:
+   pre:
+      - docker pull openshift/geard
+      - docker run -d openshift/geard
+
+test:
+   override:
+      - mvn test
