@@ -5,9 +5,9 @@ machine:
 dependencies:
    pre:
       - docker pull openshift/geard:
-		   timeout: 300
-	  - docker run -d openshift/geard
+          timeout: 300
+      - docker run -d openshift/geard
 
 test:
    override:
-      - mvn test
+       - mvn test
