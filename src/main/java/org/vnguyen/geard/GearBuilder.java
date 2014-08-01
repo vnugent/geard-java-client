@@ -53,8 +53,7 @@ public class GearBuilder {
 				if (destGear.endpoints().containsKey(srcNet.fromPort)) {
 					ServiceEndpoint destEndpoint = destGear.endpoints().get(srcNet.fromPort);
 					//srcNet.toHost = destEndpoint.ip();
-					srcNet.toHost = "10.16.23.108";
-
+					srcNet.toHost = "localhost";  // Hack alert.  Linking won't work if two gears are on different host
 					srcNet.toPort = destEndpoint.publicPort();
 				}
 			}
