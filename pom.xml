@@ -57,7 +57,25 @@
       <version>0.9.1-SNAPSHOT</version>
 	</dependency>	 	
   </dependencies>
-
+  
+  <!-- Build failed on Fedora 20 if I don't have this section -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.github.jnr</groupId>
+				<artifactId>jffi</artifactId>
+				<version>1.2.7</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.jnr</groupId>
+				<artifactId>jffi</artifactId>
+				<classifier>native</classifier>
+				<version>1.2.7</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<!-- end Fedora 20 fix -->
+	
 	<repositories>
 		<repository>
 			<id>jboss-public-repository</id>
