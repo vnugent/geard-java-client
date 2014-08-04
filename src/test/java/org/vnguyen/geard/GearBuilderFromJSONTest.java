@@ -3,6 +3,7 @@ package org.vnguyen.geard;
 import java.util.Map;
 
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -19,12 +20,16 @@ public class GearBuilderFromJSONTest {
 	@Test
 	public void loadFromJSON() throws Exception {
 		final String json="{\"Image\": \"openshift/busybox-http-app\", \"Started\":true, \"Ports\":[{\"Internal\":8080}]}";
+		
+		Reporter.log(json);
+		
 		Gear psqlGear = builder.buildFromJSON(json)
 								.build();
 		
 		Map<Integer, ServiceEndpoint> endpoints = psqlGear.endpoints();
 		
 		ServiceEndpoint e = endpoints.get(8080);
+		Reporter.log(e.toString());
 		Assert.assertEquals(e.internalPort(), 8080, "internal port");
 		Assert.assertNotNull(e.publicPort(), "external port");
 		Assert.assertNotNull(e.internalIP(), "internal ip");
