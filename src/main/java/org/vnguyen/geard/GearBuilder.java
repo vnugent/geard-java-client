@@ -13,7 +13,7 @@ public class GearBuilder {
 
 	protected GearDefinition gearDefinition;
 	protected GeardClient geardClient;
-	protected String gearName;
+	protected String gearName = RandomStringUtils.randomAlphanumeric(7);
 	protected List<Gear> linkDestinations = new ArrayList<Gear>();
 	protected DockerHelperService dockerSvc;
 	
@@ -23,7 +23,7 @@ public class GearBuilder {
 		return this;
 	}
 	public GearBuilder withNamePrefix(String prefix) {
-		this.gearName = prefix + RandomStringUtils.randomAlphanumeric(7);
+		this.gearName = prefix + this.gearName;
 		return this;
 	}
 	

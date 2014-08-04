@@ -12,6 +12,7 @@ public class DefaultServiceEndpointImpl implements ServiceEndpoint {
 	protected String ip;
 	protected int publicPort;
 	protected int internalPort;
+	protected String internalIP;
 	
 	public String name() {
 		return name;
@@ -34,7 +35,7 @@ public class DefaultServiceEndpointImpl implements ServiceEndpoint {
 	}
 
 	public String toString() {
-		return String.format("[ip: %s, port %s->%s]", ip, internalPort, publicPort );
+		return String.format("[ip:%s->%s, port %s->%s]", internalIP, ip, internalPort, publicPort );
 	}
 	
 	public int hashCode() {
@@ -59,5 +60,9 @@ public class DefaultServiceEndpointImpl implements ServiceEndpoint {
 	            append(publicPort, rhs.publicPort).
 	            append(internalPort, rhs.internalPort).
 	            isEquals();
-	  }	
+	  }
+
+	public String internalIP() {
+		return internalIP;
+	}	
 }

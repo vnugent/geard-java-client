@@ -4,6 +4,7 @@ public interface ServiceEndpoint {
 	String name();
 	String uniqueID();
 	String ip();
+	String internalIP();
 	int publicPort();
 	int internalPort();
 }

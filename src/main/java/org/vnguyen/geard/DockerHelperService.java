@@ -28,8 +28,9 @@ public class DockerHelperService {
 		ContainerInspectResponse containerInfo = dockerClient.inspectContainerCmd(containerName).exec();
 		for(Entry<ExposedPort, Binding> e: containerInfo.getHostConfig().getPortBindings().getBindings().entrySet()) {
 			DefaultServiceEndpointImpl endpoint = new DefaultServiceEndpointImpl();
+			endpoint.internalIP = containerInfo.getNetworkSettings().getIpAddress();
 			endpoint.name = containerName;
-			endpoint.ip = containerInfo.getNetworkSettings().getIpAddress();
+			endpoint.ip = containerInfo.getNetworkSettings().getIpAddress(); // need to figure out host IP here
 			endpoint.internalPort = e.getKey().getPort();
 			endpoint.publicPort = e.getValue().getHostPort();
 			
