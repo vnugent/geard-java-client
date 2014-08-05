@@ -7,4 +7,5 @@ public interface ServiceEndpoint {
 	String internalIP();
 	int publicPort();
 	int internalPort();
+	String toStringSimple();
 }

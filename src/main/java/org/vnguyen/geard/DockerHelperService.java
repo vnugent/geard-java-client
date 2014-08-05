@@ -5,7 +5,7 @@ import java.util.Map.Entry;
 
 import com.github.dockerjava.client.DockerClient;
 import com.github.dockerjava.client.NotFoundException;
-import com.github.dockerjava.client.model.ContainerInspectResponse;
+import com.github.dockerjava.client.command.InspectContainerResponse;
 import com.github.dockerjava.client.model.ExposedPort;
 import com.github.dockerjava.client.model.Ports.Binding;
 import com.google.common.collect.Maps;
@@ -13,6 +13,7 @@ import com.google.common.collect.Maps;
 public class DockerHelperService {
 
 	private DockerClient dockerClient;
+	private String nodePublicAddress = System.getProperty("geard.node.address", "localhost");
 
 	public DockerHelperService() {
 		dockerClient = new DockerClient("http://127.0.0.1:2375");
@@ -25,12 +26,13 @@ public class DockerHelperService {
 	public Map<Integer, ServiceEndpoint> getServiceEndpointsFromContainer(String containerName) {
 		Map<Integer, ServiceEndpoint> endpoints = Maps.newHashMap();
 
-		ContainerInspectResponse containerInfo = dockerClient.inspectContainerCmd(containerName).exec();
+		InspectContainerResponse containerInfo = dockerClient.inspectContainerCmd(containerName).exec();
 		for(Entry<ExposedPort, Binding> e: containerInfo.getHostConfig().getPortBindings().getBindings().entrySet()) {
 			DefaultServiceEndpointImpl endpoint = new DefaultServiceEndpointImpl();
 			endpoint.internalIP = containerInfo.getNetworkSettings().getIpAddress();
 			endpoint.name = containerName;
-			endpoint.ip = containerInfo.getNetworkSettings().getIpAddress(); // need to figure out host IP here
+		
+			endpoint.ip = nodePublicAddress; // need a better way to figure out host IP here
 			endpoint.internalPort = e.getKey().getPort();
 			endpoint.publicPort = e.getValue().getHostPort();
 			

@@ -38,6 +38,10 @@ public class DefaultServiceEndpointImpl implements ServiceEndpoint {
 		return String.format("[ip:%s->%s, port %s->%s]", internalIP, ip, internalPort, publicPort );
 	}
 	
+	public String toStringSimple() {
+		return String.format("[%s:%s]", ip, publicPort);
+	}
+	
 	public int hashCode() {
 	     return new HashCodeBuilder(13, 37).
 	       append(ip).
