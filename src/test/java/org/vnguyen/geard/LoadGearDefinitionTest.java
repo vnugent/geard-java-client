@@ -5,6 +5,8 @@ import java.io.File;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.google.common.collect.ImmutableList;
+
 @Test
 public class LoadGearDefinitionTest {
 
@@ -22,5 +24,18 @@ public class LoadGearDefinitionTest {
 //		"ToPort": 8080
 		final NetworkLinksDefinition expected = NetworkLinksDefinition.create("127.0.0.1", 8081, "9.8.23.14", 8080);
 		Assert.assertEquals(net, expected, "network links");
+	}
+	
+	@Test
+	public void loadJSONwithEnvs() throws Exception {
+		GearDefinition def = Builders.load(GearDefinition.class, new File("src/test/resources/gear/busybox-http-with-envs.json"));
+
+		final Environment expectedEnv = Environment.create("env-printer-environment",
+															ImmutableList.<EnvVariable>of(
+																	new EnvVariable("Foo", "Bar"),
+																	new EnvVariable("tag", "one")
+															)); 
+		Assert.assertEquals(def.env, expectedEnv, "Environment");
+		
 	}
 }

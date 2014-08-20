@@ -38,6 +38,9 @@ public class GearDefinition {
 	@JsonProperty("NetworkLinks")
 	public List<NetworkLinksDefinition> links;
 	
+	@JsonProperty("Environment")
+	public Environment env;
+	
 	public GearDefinition() {}
 	
 	public static NetworkLinksDefinition makeLinks() {

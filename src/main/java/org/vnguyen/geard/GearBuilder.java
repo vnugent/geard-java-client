@@ -9,12 +9,15 @@ import org.vnguyen.geard.DockerHelperService;
 import org.vnguyen.geard.Gear;
 import org.vnguyen.geard.ServiceEndpoint;
 
+import com.google.common.collect.ImmutableList;
+
 public class GearBuilder {
 
 	protected GearDefinition gearDefinition;
 	protected GeardClient geardClient;
 	protected String gearName = RandomStringUtils.randomAlphanumeric(7);
 	protected List<Gear> linkDestinations = new ArrayList<Gear>();
+	protected Environment env = new Environment();
 	protected DockerHelperService dockerSvc;
 	
 	
@@ -24,6 +27,11 @@ public class GearBuilder {
 	}
 	public GearBuilder withNamePrefix(String prefix) {
 		this.gearName = prefix + this.gearName;
+		return this;
+	}
+	
+	public GearBuilder withEnvironment(Environment env) {
+		this.env = env;
 		return this;
 	}
 	
@@ -38,6 +46,7 @@ public class GearBuilder {
 	}
 	
 	public Gear build() {
+		gearDefinition.env = env;
 		doLinkGear();
 		geardClient.install(this.gearName, this.gearDefinition);
 		geardClient.start(this.gearName);
