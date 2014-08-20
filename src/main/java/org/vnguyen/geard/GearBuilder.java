@@ -9,8 +9,6 @@ import org.vnguyen.geard.DockerHelperService;
 import org.vnguyen.geard.Gear;
 import org.vnguyen.geard.ServiceEndpoint;
 
-import com.google.common.collect.ImmutableList;
-
 public class GearBuilder {
 
 	protected GearDefinition gearDefinition;

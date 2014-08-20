@@ -4,7 +4,7 @@ import java.io.File;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
-import com.github.dockerjava.client.DockerClient;
+import com.github.dockerjava.core.DockerClientImpl;
 
 public class Builders {
 
@@ -16,7 +16,7 @@ public class Builders {
 		final String nodeHost = geard.getURI().getHost();
 
 		System.setProperty("docker.io.version", "1.12");
-		dockerService = new DockerHelperService(new DockerClient("http://" + nodeHost + ":2375"));
+		dockerService = new DockerHelperService(new DockerClientImpl("http://" + nodeHost + ":2375"));
 	}
 	
 	/**

@@ -3,11 +3,12 @@ package org.vnguyen.geard;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.github.dockerjava.client.DockerClient;
-import com.github.dockerjava.client.NotFoundException;
-import com.github.dockerjava.client.command.InspectContainerResponse;
-import com.github.dockerjava.client.model.ExposedPort;
-import com.github.dockerjava.client.model.Ports.Binding;
+import com.github.dockerjava.api.DockerClient;
+import com.github.dockerjava.api.NotFoundException;
+import com.github.dockerjava.api.command.InspectContainerResponse;
+import com.github.dockerjava.api.model.ExposedPort;
+import com.github.dockerjava.api.model.Ports.Binding;
+import com.github.dockerjava.core.DockerClientImpl;
 import com.google.common.collect.Maps;
 
 public class DockerHelperService {
@@ -16,7 +17,7 @@ public class DockerHelperService {
 	private String nodePublicAddress = System.getProperty("geard.node.address", "localhost");
 
 	public DockerHelperService() {
-		dockerClient = new DockerClient("http://127.0.0.1:2375");
+		dockerClient = new DockerClientImpl("http://127.0.0.1:2375");
 	}
 	
 	public DockerHelperService(DockerClient client) {
